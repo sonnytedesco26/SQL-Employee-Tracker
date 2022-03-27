@@ -1,3 +1,5 @@
+use employeesdb;
+
 INSERT INTO department (name) VALUES
 ('Advertising'),
 ('Production'),
@@ -28,10 +30,10 @@ INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES
 ('Chester', 'Malone', 4, NULL),
 ('Tony', 'Two Shoes', 5, 5),
 ('Nicholas', 'Cage', 11, 12),
-('Hank', 'Hill', 10, 6)
-('Denice', 'Desalad' 9, NULL)
-('Mantis', 'Toboggan', 6, NULL)
+('Hank', 'Hill', 10, 6),
+('Denice', 'Desalad', 9, 9),
+('Mantis', 'Toboggan', 6, NULL),
 ('Mac', 'Miller', 7, 6),
-('Brian', 'Blian', 8, NULL)
-('Stephanie', 'Sodds', 12, NULL);
+('Brian', 'Blian', 8, NULL),
+('Stephanie', 'Sodds', 11, NULL);
 

@@ -214,7 +214,44 @@ function addRole(){
 };
 
 function addEmployee(){
+    inquirer.prompt(
+        [
+            {
+                type: 'input',
+                name: 'firstName',
+                message: "What's the employee's first name?",
+                validate(firstName){
+                    if(firstName){return true;}
+                    else{
+                        console.log('Must enter first name');
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'lastName',
+                message: "What's the employee's last name?",
+                validate(lastName){
+                    if(lastName){return true;}
+                    else{
+                        console.log('Must enter last name');
+                        return false;
+                    }
+                }
+            }
+        ]
+    ).then(response =>{
+        const input = [response.firstName, response.lastName];
+        const listRoles = `SELECT id, title FROM role`;
 
+        connection.query(listRoles, function(error, result){
+            if(error) throw error;
+
+            const input = result.map(({id, title}) => ({name: title, value: id}));
+            
+        })
+    })
 };
 
 function updateEmployeeRole(){

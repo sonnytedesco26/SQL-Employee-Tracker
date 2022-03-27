@@ -28,12 +28,58 @@ function titleDrop(){
 
 function userPrompt(){
     inquirer.prompt(
-        [
-            {
-                type: 'list',
-                name: 'options',
-                message: 'What do you'
-            }
-      ]
-    )
-} 
+        [{
+            type: 'list',
+            name: 'options',
+            message: 'What do you like to do?',
+            options: [
+                'View departments',
+                'View roles',
+                'View employees',
+                'Add department',
+                'Add role',
+                'Add employee',
+                'Update employee role',
+                'Nothing'
+            ]
+        }]
+    ).then((responses) => {
+        const options = responses;
+
+        if(options === 'View departments'){
+            displayDepartments();
+        }
+    })
+};
+
+function displayDepartments(){
+
+};
+
+function displayRoles(){
+
+};
+
+function displayEmployees(){
+
+};
+
+function addDepartment(){
+
+};
+
+function addRole(){
+
+};
+
+function addEmployee(){
+
+};
+
+function updateEmployeeRole(){
+
+};
+
+function doNothing(){
+
+};

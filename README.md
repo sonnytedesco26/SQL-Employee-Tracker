@@ -4,6 +4,7 @@
 * [Description](#description)
 * [Required Packages](#required-packages)
 * [Installation](#installation)
+* [Use](#use)
 
 
 ## Description

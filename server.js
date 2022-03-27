@@ -46,18 +46,56 @@ function userPrompt(){
     ).then((responses) => {
         const options = responses;
 
-        if(options === 'View departments'){
+        if(options == 'View departments'){
             displayDepartments();
         }
-    })
+        if(options == 'View roles'){
+            displayRoles();
+        }
+        if(options == 'View employees'){
+            displayEmployees();
+        }
+        if(options == 'Add department'){
+            addDepartment();
+        }
+        if(options == 'Add role'){
+            addRole();
+        }
+        if(options == 'Add employee'){
+            addEmployee();
+        }
+        if(options == 'Update employee role'){
+            updateEmployeeRole();
+        }
+        if(options == 'Nothing'){
+            doNothing();
+        }
+    }
+    );
 };
 
 function displayDepartments(){
+    console.log('Displaying departments \n');
+    const statement = `SELECT id, name AS department from department`;
 
+    connection.query(statement, function (error, result){
+        if(error) throw error;
+        console.table(result);
+        userPrompt();
+    });
 };
 
 function displayRoles(){
-
+    console.log('Displaying roles \n');
+    const statement = `SELECT r.id, r.title, d.name AS department 
+                       FROM role r INNER JOIN department d 
+                       ON r.department_id = d.id`;
+                       
+    connection.query(statement, function (error, result){
+        if(error) throw error;
+        console.table(result);
+        userPrompt();
+    });
 };
 
 function displayEmployees(){
@@ -81,5 +119,5 @@ function updateEmployeeRole(){
 };
 
 function doNothing(){
-
+    connection.end();
 };

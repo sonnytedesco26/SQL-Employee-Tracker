@@ -1,11 +1,11 @@
-INSERT INTO department ([name]) VALUES
+INSERT INTO department (name) VALUES
 ('Advertising'),
 ('Production'),
 ('HR'),
 ('Development'),
 ('Sales');
 
-INSERT INTO [role] (title, salary, department_id) VALUES
+INSERT INTO role (title, salary, department_id) VALUES
 ('Creative Director', 90000, 1),
 ('Chief Marketing Officer', 120000, 1),
 ('Software Engineer', 40000, 4),

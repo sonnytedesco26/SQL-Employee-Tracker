@@ -30,9 +30,9 @@ function userPrompt(){
     inquirer.prompt(
         [{
             type: 'list',
-            name: 'options',
+            name: 'choices',
             message: 'What do you like to do?',
-            options: [
+            choices: [
                 'View departments',
                 'View roles',
                 'View employees',
@@ -44,30 +44,30 @@ function userPrompt(){
             ]
         }]
     ).then((response) => {
-        const options = response;
+        const {choices} = response;
 
-        if(options == 'View departments'){
+        if(choices == 'View departments'){
             displayDepartments();
         }
-        if(options == 'View roles'){
+        if(choices == 'View roles'){
             displayRoles();
         }
-        if(options == 'View employees'){
+        if(choices == 'View employees'){
             displayEmployees();
         }
-        if(options == 'Add department'){
+        if(choices == 'Add department'){
             addDepartment();
         }
-        if(options == 'Add role'){
+        if(choices == 'Add role'){
             addRole();
         }
-        if(options == 'Add employee'){
+        if(choices == 'Add employee'){
             addEmployee();
         }
-        if(options == 'Update employee role'){
+        if(choices == 'Update employee role'){
             updateEmployeeRole();
         }
-        if(options == 'Nothing'){
+        if(choices == 'Nothing'){
             doNothing();
         }
     }
@@ -187,10 +187,30 @@ function addRole(){
 
         connection.query(listDepartments, function(error, result){
             if(error) throw error;
-            const dep = result.
-        }
-        )
-    })
+            const dep = result.map(({name, id}) => ({name: name, value: id}));
+            
+            inquirer.prompt(
+                [{
+                    type: 'list',
+                    name: 'dep',
+                    message: 'What department does this role belong to?',
+                    choices: dep
+                }]
+            ).then(depChoice =>{
+                const dep = depChoice.dep;
+                input.push(dep);
+
+                const statement = `INSERT INTO role
+                                   (title, salary, department_id)
+                                   VALUES (?,?,?)`;
+                connection.query(statement, input, function(error, result){
+                    if(error) throw error;
+                    console.log(`Added ${response.roleAdd} to roles`);
+                    displayRoles();
+                })
+            })
+        });
+    });
 };
 
 function addEmployee(){

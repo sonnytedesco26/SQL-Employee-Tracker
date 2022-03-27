@@ -4,7 +4,7 @@ CREATE DATABASE EmployeesDB;
 
 CREATE TABLE [department] (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(30) NOT NULL
+    [name] VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE [role] (
@@ -34,5 +34,5 @@ CREATE TABLE employee (
     CONSTRAINT manager_fk
     FOREIGN KEY (manager_id)
     REFERENCES employee(id)
-    ON UPDATE CASCADE ON DELETE CASCADE
+    ON DELETE SET NULL
 );
